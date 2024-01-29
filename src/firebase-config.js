@@ -3,7 +3,7 @@ import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAepxEClUTOaSVwU_Y8votvb8ZSInnkoTs",
+    apiKey: "",
     authDomain: "shimmer-chat-app.firebaseapp.com",
     databaseURL: "https://shimmer-chat-app-default-rtdb.firebaseio.com",
     projectId: "shimmer-chat-app",
