@@ -562,7 +562,7 @@ const ChatView = () => {
                 >
                 <UserCircleIcon className="flex-shrink-0 h-8 w-8 text-gray-700 mr-2" />
                   <span className="font-small text-gray-700">
-                    Channel {channelId}
+                  Channel {channelId.slice(0,3)}...{channelId.slice(-6)}
                   </span>
                   {channelsWithNewMessages.includes(channelId) && (
                     <div className="flex items-center">
