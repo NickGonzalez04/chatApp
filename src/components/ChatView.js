@@ -19,6 +19,7 @@ import { ref, set, off, get, push, update, onValue } from "firebase/database";
 
 const ChatView = () => {
   const { user } = useUser();
+  console.log("user from lS", user.userId);
   const [currentMessage, setCurrentMessage] = useState("");
   const [selectedChannelId, setSelectedChannelId] = useState(null);
   const [channelsWithNewMessages, setChannelsWithNewMessages] = useState([]);
