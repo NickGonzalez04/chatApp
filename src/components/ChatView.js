@@ -401,7 +401,9 @@ const ChatView = () => {
                           <li>
                             <div className="text-xs font-semibold leading-6 text-gray-400">Chat Channels</div>
                             <ul role="list" className="-mx-2 mt-2 space-y-1">
-                              {Object.keys(channels).map((channelId) => (
+                              {Object.keys(channels).map((channelId) => {
+                                const unreadCount = unreadMessagesCount[channelId] || 0;
+                              return (
                                 <li key={channelId}
                                 onClick={() => handleChannelClick(channelId)}>
                                   <a
@@ -419,7 +421,9 @@ const ChatView = () => {
                                     <span className="truncate"> Channel {channelId.slice(0,3)}...{channelId.slice(-6)}</span>
                                   </a>
                                 </li>
-                              ))}
+                              );
+                            })}
+
                             </ul>
                           </li>
                           <li className="mt-auto">
@@ -476,7 +480,11 @@ const ChatView = () => {
                   <li>
                     <div className="text-xs font-semibold leading-6 text-gray-400">Chat Channels</div>
                     <ul role="list" className="-mx-2 mt-2 space-y-1">
-                    {Object.keys(channels).map((channelId) => (
+                    {Object.keys(channels).map((channelId) => {
+
+                    const unreadCount = unreadMessagesCount[channelId] || 0;
+                      return (
+                       
                                 <li key={channelId}
                                 onClick={() => handleChannelClick(channelId)}>
                                   <a
@@ -488,13 +496,22 @@ const ChatView = () => {
                                       'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                     )}
                                   >
-                                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">
+                                  {unreadCount == 0 ? (<span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">
                                       C
-                                    </span>
+                                    </span>) : (<span className="flex-shrink-0 mr-2">
+                        <span className="relative">
+                          <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                          <span className="ml-1 bg-red-100 text-red-600 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-md">
+                        Unread({unreadCount})
+                      </span>
+                        </span>
+                      </span>)}
                                     <span className="truncate"> Channel {channelId.slice(0,3)}...{channelId.slice(-6)}</span>
                                   </a>
                                 </li>
-                     ))}
+                            );
+                      })}
                     </ul>
                   </li>
                   <li className="mt-auto">
@@ -595,40 +612,7 @@ const ChatView = () => {
                 </div>
               </div>
             </div>
-        {/* <aside className="fixed inset-y-0 left-0 transform w-full md:w-64 lg:w-96 overflow-y-auto border-r border-gray-200 px-4 py-6 md:px-6 lg:px-8 transition duration-200 ease-in-out md:block">
-          <ul className="space-y-3">
-            {Object.keys(channels).map((channelId) => {
-            
-              const unreadCount = unreadMessagesCount[channelId] || 0;
-
-              return (
-                <li
-                  key={channelId}
-                  className="group flex justify-between items-center p-2 bg-gray-100 hover:bg-gray-200 rounded-md cursor-pointer"
-                  onClick={() => handleChannelClick(channelId)}
-                >
-                <UserCircleIcon className="flex-shrink-0 h-8 w-8 text-gray-700 mr-2" />
-                  <span className="font-small text-gray-700">
-                  Channel {channelId.slice(0,3)}...{channelId.slice(-6)}
-                  </span>
-                  {channelsWithNewMessages.includes(channelId) && (
-                    <div className="flex items-center">
-                      <span className="flex-shrink-0 mr-2">
-                        <span className="relative">
-                          <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                        </span>
-                      </span>
-                      <span className="bg-red-100 text-red-600 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-md">
-                        Unread({unreadCount})
-                      </span>
-                    </div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </aside> */}
+   
       <main className="py-10 flex flex-col h-screen">
   <div className="px-4 sm:px-6 lg:px-8 flex-1">
               <h1 className="text-3xl font-bold leading-tight tracking-tight px-4 text-gray-900">
